@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lovers Pets - Frente de Caixa & Gestão Premium</title>
 
-  <!-- CONFIGURAÇÃO DOS ÍCONES E PWA -->
+  <!-- CONFIGURAÇÃO DOS ÍCONES -->
   <link rel="icon" type="image/png" href="lovers_pets_icon.png" sizes="192x192">
   <link rel="apple-touch-icon" href="lovers_pets_icon.png">
   <meta name="mobile-web-app-capable" content="yes">
@@ -495,7 +495,7 @@
 
     .status-confirmed { background: rgba(6, 214, 160, 0.2); color: var(--success); }
 
-    /* SLIDE PROPAGANDA */
+    /* SLIDE PROPAGANDA (NOVO) */
     .promo-slider-container {
       margin-top: 2rem;
       background: linear-gradient(135deg, rgba(28, 37, 65, 0.9) 0%, rgba(11, 19, 43, 0.95) 100%);
@@ -539,6 +539,11 @@
     .promo-highlight {
       color: var(--accent-gold);
       font-weight: 700;
+      text-decoration: none;
+    }
+
+    .promo-highlight:hover {
+      text-decoration: underline;
     }
 
     @keyframes slideFade {
@@ -546,7 +551,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* FOOTER */
+    /* FOOTER & DISCRETE PRIVACY */
     footer {
       text-align: center;
       padding: 1.5rem;
@@ -597,6 +602,7 @@
       box-shadow: 0 0 30px rgba(0,0,0,0.8);
     }
 
+    /* RECEIPT STYLE */
     .receipt-container {
       background: #FFF;
       color: #000;
@@ -733,7 +739,7 @@
       </div>
     </section>
 
-    <!-- VIEW 2: ESTOQUE -->
+    <!-- VIEW 2: CADASTRO E ESTOQUE -->
     <section id="view-produtos" class="view-section">
       <div class="pdv-grid">
         <div class="card">
@@ -799,7 +805,7 @@
       </div>
     </section>
 
-    <!-- VIEW 3: CLIENTES -->
+    <!-- VIEW 3: CADASTRO DE CLIENTES -->
     <section id="view-clientes" class="view-section">
       <div class="pdv-grid">
         <div class="card">
@@ -854,7 +860,7 @@
       </div>
     </section>
 
-    <!-- VIEW 4: RESERVAS -->
+    <!-- VIEW 4: RESERVAS E AGENDAMENTOS -->
     <section id="view-reservas" class="view-section">
       <div class="pdv-grid">
         <div class="card">
@@ -961,7 +967,7 @@
       </div>
     </section>
 
-    <!-- SLIDE PROPAGANDA -->
+    <!-- SLIDE PROPAGANDA (NOVO BEM ABAIXO) -->
     <div class="promo-slider-container">
       <div class="promo-slider">
         <div class="promo-slide active">
@@ -1000,7 +1006,7 @@
         <p>Este software foi idealizado e desenvolvido por <strong>sistemacmtech@gmail.com</strong>.</p>
         <br>
         <p><strong>Segurança e Armazenamento de Dados:</strong></p>
-        <p>Todas as informações cadastradas neste aplicativo são armazenadas 100% no dispositivo local do usuário através da tecnologia <code>localStorage</code>. Funciona perfeitamente offline.</p>
+        <p>Todas as informações cadastradas neste aplicativo são armazenadas 100% no dispositivo local do usuário através da tecnologia <code>localStorage</code>.</p>
       </div>
       <button class="btn btn-gold" style="width: 100%; margin-top: 1.5rem;" onclick="closePrivacyModal()">Compreendi e Concordo</button>
     </div>
@@ -1033,26 +1039,8 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT & CACHE OFFLINE (SERVICE WORKER AUTOMÁTICO) -->
+  <!-- JAVASCRIPT -->
   <script>
-    if ('serviceWorker' in navigator) {
-      const swCode = `
-        const CACHE_NAME = 'lovers-pets-v3';
-        self.addEventListener('install', e => { self.skipWaiting(); });
-        self.addEventListener('activate', e => { e.waitUntil(clients.claim()); });
-        self.addEventListener('fetch', e => {
-          e.respondWith(
-            fetch(e.request).catch(() => caches.match(e.request))
-          );
-        });
-      `;
-      const swBlob = new Blob([swCode], { type: 'text/javascript' });
-      const swUrl = URL.createObjectURL(swBlob);
-      navigator.serviceWorker.register(swUrl)
-        .then(() => console.log('Modo Offline ativado com sucesso!'))
-        .catch(err => console.log('Erro ao registrar cache offline:', err));
-    }
-
     let state = {
       products: JSON.parse(localStorage.getItem('lovers_products')) || [
         { id: '1', name: 'Ração Cães Adultos 15kg', category: 'Alimentação', price: 149.90, stock: 12, code: '7891001' },
@@ -1502,6 +1490,7 @@ Forma de Pagto:    ${sale.method}
       });
     }
 
+    // --- ANIMAÇÃO DO CARROSSEL DE PROPAGANDA ---
     function initPromoSlider() {
       const slides = document.querySelectorAll('.promo-slide');
       let currentSlide = 0;
@@ -1510,7 +1499,7 @@ Forma de Pagto:    ${sale.method}
         slides[currentSlide].classList.remove('active');
         currentSlide = (currentSlide + 1) % slides.length;
         slides[currentSlide].classList.add('active');
-      }, 4000);
+      }, 4000); // Troca de mensagem a cada 4 segundos
     }
 
     function openPrivacyModal() {
@@ -1523,4 +1512,3 @@ Forma de Pagto:    ${sale.method}
   </script>
 </body>
 </html>
-
