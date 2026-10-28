@@ -966,15 +966,15 @@
       <div class="promo-slider">
         <div class="promo-slide active">
           <i class="fa-solid fa-wand-magic-sparkles"></i>
-          <span>Desenvolvido por <strong class="promo-highlight">@carlamitertech</strong> • Soluções Web & Sistemas Personalizados[span_0](start_span)[span_0](end_span)[span_1](start_span)[span_1](end_span)</span>
+          <span>Desenvolvido por <strong class="promo-highlight">@carlamitertech</strong> • Soluções Web & Sistemas Personalizados</span>
         </div>
         <div class="promo-slide">
           <i class="fa-solid fa-envelope-circle-check"></i>
-          <span>Contato & Suporte Técnico: <strong class="promo-highlight">sistemacmtech@gmail.com</strong>[span_2](start_span)[span_2](end_span)[span_3](start_span)[span_3](end_span)</span>
+          <span>Contato & Suporte Técnico: <strong class="promo-highlight">sistemacmtech@gmail.com</strong></span>
         </div>
         <div class="promo-slide">
           <i class="fa-solid fa-mobile-screen-button"></i>
-          <span>Organização & Cuidado na Palma da Sua Mão • Siga <strong class="promo-highlight">@carlamitertech</strong>[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span)</span>
+          <span>Organização & Cuidado na Palma da Sua Mão • Siga <strong class="promo-highlight">@carlamitertech</strong></span>
         </div>
       </div>
     </div>
@@ -997,10 +997,10 @@
       </div>
       <div style="font-size: 0.85rem; line-height: 1.6; color: var(--text-muted);">
         <p><strong>Desenvolvimento e Propriedade Intelectual:</strong></p>
-        <p>Este software foi idealizado e desenvolvido por <strong>sistemacmtech@gmail.com</strong>[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span).</p>
+        <p>Este software foi idealizado e desenvolvido por <strong>sistemacmtech@gmail.com</strong>.</p>
         <br>
         <p><strong>Segurança e Armazenamento de Dados:</strong></p>
-        <p>Todas as informações cadastradas neste aplicativo são armazenadas 100% no dispositivo local do usuário através da tecnologia <code>localStorage</code>[span_8](start_span)[span_8](end_span). Funciona perfeitamente offline.</p>
+        <p>Todas as informações cadastradas neste aplicativo são armazenadas 100% no dispositivo local do usuário através da tecnologia <code>localStorage</code>. Funciona perfeitamente offline.</p>
       </div>
       <button class="btn btn-gold" style="width: 100%; margin-top: 1.5rem;" onclick="closePrivacyModal()">Compreendi e Concordo</button>
     </div>
@@ -1035,10 +1035,9 @@
 
   <!-- JAVASCRIPT & CACHE OFFLINE (SERVICE WORKER AUTOMÁTICO) -->
   <script>
-    // Registro dinâmico de Service Worker direto via Blob para garantir funcionamento 100% offline em arquivo único
     if ('serviceWorker' in navigator) {
       const swCode = `
-        const CACHE_NAME = 'lovers-pets-v2';
+        const CACHE_NAME = 'lovers-pets-v3';
         self.addEventListener('install', e => { self.skipWaiting(); });
         self.addEventListener('activate', e => { e.waitUntil(clients.claim()); });
         self.addEventListener('fetch', e => {
