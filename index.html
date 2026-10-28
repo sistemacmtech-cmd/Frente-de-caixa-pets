@@ -5,20 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lovers Pets - Frente de Caixa & Gestão Premium</title>
 
-  <!-- CONFIGURAÇÃO DOS ÍCONES (ADICIONADO) -->
-  <!-- 1. Ícone padrão do navegador (favicon) -->
+  <!-- CONFIGURAÇÃO DOS ÍCONES -->
   <link rel="icon" type="image/png" href="lovers_pets_icon.png" sizes="192x192">
-  
-  <!-- 2. Ícone de instalação para iOS (iPhone/iPad) -->
   <link rel="apple-touch-icon" href="lovers_pets_icon.png">
-
-  <!-- 3. Configuração para instalação em Android e PWA (Add to Home Screen) -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Lovers Pets">
   <meta name="theme-color" content="#0B132B">
-  
-  <!-- Nota: Para Android completo, crie um arquivo manifest.json na mesma pasta -->
-  <!-- <link rel="manifest" href="manifest.json"> -->
 
   <!-- Google Fonts & Font Awesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -503,6 +495,62 @@
 
     .status-confirmed { background: rgba(6, 214, 160, 0.2); color: var(--success); }
 
+    /* SLIDE PROPAGANDA (NOVO) */
+    .promo-slider-container {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, rgba(28, 37, 65, 0.9) 0%, rgba(11, 19, 43, 0.95) 100%);
+      border: 1px solid var(--accent-gold);
+      border-radius: var(--radius);
+      padding: 1rem 1.5rem;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .promo-slider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+    }
+
+    .promo-slide {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-align: center;
+      width: 100%;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-light);
+      animation: slideFade 0.6s ease-in-out;
+    }
+
+    .promo-slide.active {
+      display: flex;
+    }
+
+    .promo-slide i {
+      color: var(--accent-gold);
+      font-size: 1.3rem;
+    }
+
+    .promo-highlight {
+      color: var(--accent-gold);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .promo-highlight:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes slideFade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* FOOTER & DISCRETE PRIVACY */
     footer {
       text-align: center;
@@ -510,7 +558,7 @@
       font-size: 0.75rem;
       color: var(--text-muted);
       border-top: 1px solid rgba(255,255,255,0.05);
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
 
     .privacy-link {
@@ -918,6 +966,24 @@
         </div>
       </div>
     </section>
+
+    <!-- SLIDE PROPAGANDA (NOVO BEM ABAIXO) -->
+    <div class="promo-slider-container">
+      <div class="promo-slider">
+        <div class="promo-slide active">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>Desenvolvido por <strong class="promo-highlight">@carlamitertech</strong> • Soluções Web & Sistemas Personalizados</span>
+        </div>
+        <div class="promo-slide">
+          <i class="fa-solid fa-envelope-circle-check"></i>
+          <span>Contato & Suporte Técnico: <strong class="promo-highlight">sistemacmtech@gmail.com</strong></span>
+        </div>
+        <div class="promo-slide">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <span>Organização & Cuidado na Palma da Sua Mão • Siga <strong class="promo-highlight">@carlamitertech</strong></span>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- FOOTER -->
@@ -1003,6 +1069,7 @@
       renderClients();
       renderBookings();
       renderFinance();
+      initPromoSlider();
     });
 
     function saveState() {
@@ -1288,7 +1355,6 @@ Forma de Pagto:    ${sale.method}
       });
     }
 
-    // --- CADASTRO DE CLIENTES ---
     function saveClient(e) {
       e.preventDefault();
       const name = document.getElementById('client-name').value;
@@ -1332,7 +1398,6 @@ Forma de Pagto:    ${sale.method}
       });
     }
 
-    // --- RESERVAS & AGENDAMENTOS ---
     function saveBooking(e) {
       e.preventDefault();
       const owner = document.getElementById('book-owner').value;
@@ -1425,6 +1490,18 @@ Forma de Pagto:    ${sale.method}
       });
     }
 
+    // --- ANIMAÇÃO DO CARROSSEL DE PROPAGANDA ---
+    function initPromoSlider() {
+      const slides = document.querySelectorAll('.promo-slide');
+      let currentSlide = 0;
+
+      setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }, 4000); // Troca de mensagem a cada 4 segundos
+    }
+
     function openPrivacyModal() {
       document.getElementById('privacy-modal').classList.add('active');
     }
@@ -1435,3 +1512,4 @@ Forma de Pagto:    ${sale.method}
   </script>
 </body>
 </html>
+
